@@ -70,7 +70,7 @@ namespace Ex03.ConsoleUI
                 isNumber = int.TryParse(inputString, out inputNumber);
                 if (!isNumber)
                 {
-                    Console.WriteLine("Your input is not a number");
+                    Console.WriteLine("Your input is invalid");
                 }
                 else if (inputNumber < i_MinRange || inputNumber > i_MaxRange)
                 {
@@ -158,8 +158,14 @@ namespace Ex03.ConsoleUI
             List<string> vehicleTypes = VehicleFactory.GetVehicleTypes();
 
             Console.WriteLine(string.Format(
-                "What kind of vehicle do you want? Enter the number representing your choice. 1 - {0} {1}",
-                vehicleTypes.Count, string.Join(", ", vehicleTypes)));
+                "What kind of vehicle do you want? Enter the number representing your choice.",
+                vehicleTypes.Count));
+            for (int i = 0; i < vehicleTypes.Count; i++)
+            {
+                Console.WriteLine(string.Format(
+                    "{0} - {1}",
+                    i + 1, vehicleTypes[i]));
+            }
 
             int wantedVehicleType = getValidInputRange(1, (int)(VehicleFactory.eVehicleType.LastItem - 1));
 
@@ -199,7 +205,6 @@ namespace Ex03.ConsoleUI
                 string ownerName = Console.ReadLine();
                 Console.WriteLine("What is the phone number of the owner?"); 
                 string ownerPhoneNumber = Console.ReadLine();
-                Console.WriteLine("What kind of vehicle do you want?");
                 Vehicle wantedVehicle = getWantedVehicleByVehicleOptions(plateNumberString);
                 r_Garage.InsertVehicle(wantedVehicle, ownerName, ownerPhoneNumber); 
                 Console.WriteLine("The vehicle was inserted to the garage.");
@@ -239,10 +244,12 @@ Enter the number representing your choice."));
             }
             else
             {
-                foreach(string plateNumber in plateNumbers)
+                Console.WriteLine("===============Listing Vehicles===============");
+                foreach (string plateNumber in plateNumbers)
                 {
                     Console.WriteLine(plateNumber);
                 }
+                Console.WriteLine("=====================End======================");
             }
         }
 
