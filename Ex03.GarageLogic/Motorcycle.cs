@@ -12,7 +12,6 @@ namespace Ex03.GarageLogic
             A2,
             B,
 
-            // Must be last:
             LastItem
         }
 

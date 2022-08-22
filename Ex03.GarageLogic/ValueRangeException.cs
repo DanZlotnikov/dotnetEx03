@@ -2,7 +2,7 @@
 
 namespace Ex03.GarageLogic
 {
-    public class ValueOutOfRangeException : Exception
+    public class ValueRangeException : Exception
     {
         private readonly float r_MinValue;
         public float MinValue
@@ -21,7 +21,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public ValueOutOfRangeException(float i_MinValue, float i_MaxValue)
+        public ValueRangeException(float i_MinValue, float i_MaxValue)
             : base(string.Format("Value out of range. The range is {0} - {1}", i_MinValue, i_MaxValue))
         {
             r_MinValue = i_MinValue;

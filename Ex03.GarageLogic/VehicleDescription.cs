@@ -10,7 +10,6 @@ namespace Ex03.GarageLogic
             AlreadyRepaired,
             Paid,
 
-            // Must be last:
             LastItem
         }
 

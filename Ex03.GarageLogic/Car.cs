@@ -11,8 +11,7 @@ namespace Ex03.GarageLogic
             White,
             Black,
             Blue,
-
-            // Must be last:
+           
             LastItem
         }
 
@@ -23,7 +22,6 @@ namespace Ex03.GarageLogic
             Four,
             Five,
 
-            // Must be last:
             LastItem
         }
 
@@ -63,7 +61,7 @@ namespace Ex03.GarageLogic
 
         public override string ToString()
         {
-            return base.ToString() + string.Format("Color of the car : {0} , Number of Doors : {1} ", getColor(), r_DoorsNumber + 1);
+            return base.ToString() + string.Format("Car color : {0} , Number of Doors : {1} ", getColor(), r_DoorsNumber + 1);
         }
     }
 }

@@ -11,7 +11,6 @@ namespace Ex03.GarageLogic
             Octan96,
             Octan98,
 
-            // Must be last:
             LastItem
         }
 

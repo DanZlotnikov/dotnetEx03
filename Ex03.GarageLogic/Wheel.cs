@@ -19,7 +19,7 @@ namespace Ex03.GarageLogic
         {
             if (m_CurrentTirePressure + i_TirePressureToAdd > r_MaxTirePressure)
             {
-                throw new ValueOutOfRangeException(0, r_MaxTirePressure - m_CurrentTirePressure);
+                throw new ValueRangeException(0, r_MaxTirePressure - m_CurrentTirePressure);
             }
 
             m_CurrentTirePressure += i_TirePressureToAdd;

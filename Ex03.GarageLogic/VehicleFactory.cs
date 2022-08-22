@@ -13,7 +13,6 @@ namespace Ex03.GarageLogic
             ElectricalCar,
             FuelTruck,
 
-            // Must be last:
             LastItem
         }
 
@@ -161,8 +160,8 @@ Enter the number representing your choice."));
 
             for(int i = 0; i < wheels.Count; i++)
             {
-                Wheel currentWheel = new Wheel(i_ManufacturerName, 0, i_MaxTirePressure);
-                wheels.Add(currentWheel);
+                Wheel newTempWheel = new Wheel(i_ManufacturerName, 0, i_MaxTirePressure);
+                wheels.Add(newTempWheel);
             }
 
             return wheels;
