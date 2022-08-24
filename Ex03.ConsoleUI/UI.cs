@@ -43,14 +43,14 @@ namespace Ex03.ConsoleUI
 
             Console.WriteLine(string.Format(
 @"Choose the wanted option:
-1 - Insert a vehicle to the garage
-2 - List by status the plate numbers in the garage
-3 - Change the status of a vehicle
-4 - Fill tires to maximum
-5 - Refuel fuel vehicle
-6 - Recharge an electric vehicle.
-7 - Display vehicle full information
-8 - Exit the garage"));
+1 - Insert vehicle to the garage
+2 - List vehicle plate numbers in the garage by status
+3 - Change vehicle status
+4 - Fill tires to the maximum
+5 - Refuel vehicle (valid for fuel vehicles)
+6 - Recharge a vehicle (valid for electric vehicles)
+7 - Display vehicle information
+8 - Exit"));
 
             chosenOption = getValidInputRange(1, (int)(eMenuOptions.LastMenuItem - 1));
             handleUserMenuInput(chosenOption);
@@ -69,11 +69,11 @@ namespace Ex03.ConsoleUI
                 isNumber = int.TryParse(inputString, out inputNumber);
                 if (!isNumber)
                 {
-                    Console.WriteLine("Your input is invalid!");
+                    Console.WriteLine("Input is invalid!");
                 }
                 else if (inputNumber < i_MinRange || inputNumber > i_MaxRange)
                 {
-                    Console.WriteLine("Chosen option is out of range");
+                    Console.WriteLine("Option is out of range!");
                 }
                 else
                 {
@@ -137,7 +137,7 @@ namespace Ex03.ConsoleUI
                 doesVehicleExist = r_Garage.IsVehicleInGarage(plateNumber);
                 if (!doesVehicleExist)
                 {
-                    Console.WriteLine("This vehicle doesn't exist in the garage");
+                    Console.WriteLine("This vehicle isn't in the garage");
                 }
             }
 
@@ -146,9 +146,9 @@ namespace Ex03.ConsoleUI
 
         private void getBrandNameAndWheelsManufacturer(out string o_BrandName, out string o_WheelsManufacturer)
         {
-            Console.WriteLine("Please enter brand name");
+            Console.WriteLine("Brand name:");
             o_BrandName = Console.ReadLine();
-            Console.WriteLine("Please enter wheels manufacturer name");
+            Console.WriteLine("Wheels manufacturer name:");
             o_WheelsManufacturer = Console.ReadLine();
         }
 
@@ -157,7 +157,7 @@ namespace Ex03.ConsoleUI
             List<string> vehicleTypes = VehicleFactory.GetVehicleTypes();
 
             Console.WriteLine(string.Format(
-                "What kind of vehicle do you want? Please enter the number of your choice.",
+                "What type of vehicle do you want? Please enter the corresponding number:",
                 vehicleTypes.Count));
             for (int i = 0; i < vehicleTypes.Count; i++)
             {
@@ -195,18 +195,18 @@ namespace Ex03.ConsoleUI
 
         public void insertVehicle()
         {
-            Console.WriteLine("Please enter the plate number of the vehicle you want to insert?");
+            Console.WriteLine("Please enter the plate number:");
             string plateNumberString = Console.ReadLine();
 
             if (!r_Garage.IsVehicleInGarage(plateNumberString))
             {
-                Console.WriteLine("What is the name of the owner?");
+                Console.WriteLine("What is the owner's name?");
                 string ownerName = Console.ReadLine();
-                Console.WriteLine("What is the phone number of the owner?"); 
+                Console.WriteLine("What is the owner' phone number?"); 
                 string ownerPhoneNumber = Console.ReadLine();
                 Vehicle wantedVehicle = getWantedVehicleByVehicleOptions(plateNumberString);
                 r_Garage.InsertVehicle(wantedVehicle, ownerName, ownerPhoneNumber); 
-                Console.WriteLine("The vehicle was inserted to the garage.");
+                Console.WriteLine("The vehicle was successfully inserted to the garage.");
             }
             else
             {
@@ -225,7 +225,7 @@ namespace Ex03.ConsoleUI
 1 - Vehicles on repaired
 2 - Repaired vehicles only
 3 - Paid vehicles only
-Enter the number representing your choice."));
+Please enter the number representing your choice."));
 
             int filterOptions = getValidInputRange(0, (int)VehicleDescription.eVehicleStatus.LastItem);
             if (filterOptions == 0)
@@ -239,7 +239,7 @@ Enter the number representing your choice."));
 
             if (plateNumbers.Count == 0)
             {
-                Console.WriteLine("No vehicles in the garage is as requested");
+                Console.WriteLine("There are no vehicle in the garage matching this filter");
             }
             else
             {
@@ -264,34 +264,34 @@ Enter the number representing your choice."));
             VehicleDescription.eVehicleStatus wantedNewStatus = (VehicleDescription.eVehicleStatus)getValidInputRange(1,
              (int)VehicleDescription.eVehicleStatus.LastItem);
             r_Garage.ChangeVehicleStatus(plateNumber, wantedNewStatus);
-            Console.WriteLine("Status changed successfully!"); 
+            Console.WriteLine("Status changed!"); 
         }
 
         public void fillTiresToMax()
         {
             string plateNumber = getValidPlateNumber();
             r_Garage.FillTiresToMax(plateNumber);
-            Console.WriteLine("Tires was filled successfully!");
+            Console.WriteLine("Tires full!");
         }
 
         public void refuel()
         {
             string plateNumber = getValidPlateNumber();
             Console.WriteLine(string.Format(
-@"What type of fuel do you want? 
+@"What type of fuel? 
 1 - Soler
 2 - Octan95
 3 - Octan96
 4 - Octan98
 Enter the number representing your choice."));
             FuelEnergy.eFuelType wantedFuelType = (FuelEnergy.eFuelType)getValidInputRange(1, (int)FuelEnergy.eFuelType.LastItem);
-            Console.WriteLine("What is the amount of fuel you want to fill?");
+            Console.WriteLine("How much fuel do you want to fill?");
             float amountToFill = getValidFloat();
 
             try
             {
                 r_Garage.FillFuel(plateNumber, wantedFuelType, amountToFill);
-                Console.WriteLine("Refueled successfully!");
+                Console.WriteLine("Refueled!");
             }
             catch (FormatException formatException)
             {
@@ -303,7 +303,7 @@ Enter the number representing your choice."));
             }
             catch (ValueRangeException valueOutOfRangeException)
             {
-                Console.WriteLine(string.Format("Maximum tank size is {0} liters",
+                Console.WriteLine(string.Format("Maximum tank size is {0} litres",
                     valueOutOfRangeException.MaxValue));
             }
         }
@@ -317,7 +317,7 @@ Enter the number representing your choice."));
             try
             {
                 r_Garage.ChargeBattery(plateNumber, minutesToCharge);
-                Console.WriteLine("Battery is now charged!");
+                Console.WriteLine("Charged!");
             }
             catch (FormatException formatException)
             {
@@ -325,7 +325,7 @@ Enter the number representing your choice."));
             }
             catch (ValueRangeException valueOutOfRangeException)
             {
-                Console.WriteLine(string.Format("Maximim value is {0}", valueOutOfRangeException.MaxValue));
+                Console.WriteLine(string.Format("Maximum value is {0}", valueOutOfRangeException.MaxValue));
             }
         }
 

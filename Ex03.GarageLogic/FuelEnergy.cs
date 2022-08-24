@@ -49,7 +49,7 @@ namespace Ex03.GarageLogic
         {
             if(i_FuelType != r_FuelType)
             {
-                throw new ArgumentException("Wrong fuel type for this type of vehicle!");
+                throw new ArgumentException("Wrong fuel type for this vehicle!");
             }
 
             FillEnergy(i_FuelToAddLiters);

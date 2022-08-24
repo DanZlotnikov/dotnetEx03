@@ -61,10 +61,10 @@ namespace Ex03.GarageLogic
 
         private static void getMotorcycleProperties(Func<int, int, int> GetValidInputRange, out int o_EngineVolume, out Motorcycle.eLicenseType o_LicenseType)
         {
-            Console.WriteLine("What is the engine volume?");
+            Console.WriteLine("Enter engine volume: ");
             o_EngineVolume = int.Parse(Console.ReadLine());
             Console.WriteLine(string.Format(
-@"Please choose the license type:
+@"Please choose license type:
 1 - A 
 2 - A1 
 3 - A2 
@@ -76,7 +76,7 @@ Enter the number representing your choice."));
         private static void getCarProperties(Func<int, int, int> GetValidInputRange, out Car.eColor o_CarColor, out Car.eDoorsNumber o_CarDoorsNumber)
         {
             Console.WriteLine(string.Format(
-@"Please choose the car color:
+@"Please choose car color:
 1 - Yellow 
 2 - White 
 3 - Black
@@ -84,7 +84,7 @@ Enter the number representing your choice."));
 Enter the number representing your choice."));
             o_CarColor = (Car.eColor)GetValidInputRange(1, (int)Car.eColor.LastItem);
             Console.WriteLine(string.Format(
-@"Please choose the door number:
+@"How many doors?
 1 - Two 
 2 - Three
 3 - Four
@@ -99,7 +99,7 @@ Enter the number representing your choice."));
 
             do
             {
-                Console.WriteLine("Does contain dangerous material? Y/N");
+                Console.WriteLine("Contains dangerous material? Y/N");
                 input = Console.ReadLine();
             }
             while (input != "Y" && input != "N");
@@ -113,7 +113,7 @@ Enter the number representing your choice."));
                 o_DoesContainDangerousMaterial = false;
             }
 
-            Console.WriteLine("What is the maximum carrying weight?");
+            Console.WriteLine("Max carrying weight?");
             o_MaximumCarryingWeight = GetValidFloat();
         }
 
