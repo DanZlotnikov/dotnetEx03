@@ -52,26 +52,26 @@ namespace Ex03.ConsoleUI
 7 - Display vehicle information
 8 - Exit"));
 
-            chosenOption = getValidInputRange(1, (int)(eMenuOptions.LastMenuItem - 1));
-            handleUserMenuInput(chosenOption);
+            chosenOption = getInputRange(1, (int)(eMenuOptions.LastMenuItem - 1));
+            handleMenuInput(chosenOption);
         }
 
-        private static int getValidInputRange(int i_MinRange, int i_MaxRange)
+        private static int getInputRange(int i_MinRange, int i_MaxRange)
         {
-            string inputString = string.Empty;
-            int inputNumber = -1;
+            string inputStr = string.Empty;
+            int inputNum = -1;
             bool isNumber = false;
             bool isInRange = false;
 
             while ((!isNumber) || (!isInRange))
             {
-                inputString = Console.ReadLine();
-                isNumber = int.TryParse(inputString, out inputNumber);
+                inputStr = Console.ReadLine();
+                isNumber = int.TryParse(inputStr, out inputNum);
                 if (!isNumber)
                 {
                     Console.WriteLine("Input is invalid!");
                 }
-                else if (inputNumber < i_MinRange || inputNumber > i_MaxRange)
+                else if (inputNum < i_MinRange || inputNum > i_MaxRange)
                 {
                     Console.WriteLine("Option is out of range!");
                 }
@@ -83,16 +83,16 @@ namespace Ex03.ConsoleUI
                 Console.WriteLine(string.Format("Please enter a number between 1 - {0}", i_MaxRange));
             }
 
-            return inputNumber;
+            return inputNum;
         }
 
-        public void handleUserMenuInput(int i_MenuOption)
+        public void handleMenuInput(int i_MenuOption)
         {
             eMenuOptions menuOption = (eMenuOptions)i_MenuOption;
             switch(menuOption)
             {
                 case eMenuOptions.InsertVehicle:
-                    insertVehicle();
+                    insertNewVehicle();
                     break;
 
                 case eMenuOptions.GetPlateNumbers:
@@ -104,7 +104,7 @@ namespace Ex03.ConsoleUI
                     break;
 
                 case eMenuOptions.FillTiresToMax:
-                    fillTiresToMax();
+                    fillTiresMax();
                     break;
 
                 case eMenuOptions.Refuel:
@@ -166,12 +166,12 @@ namespace Ex03.ConsoleUI
                     i + 1, vehicleTypes[i]));
             }
 
-            int wantedVehicleType = getValidInputRange(1, (int)(VehicleFactory.eVehicleType.LastItem - 1));
+            int wantedVehicleType = getInputRange(1, (int)(VehicleFactory.eVehicleType.LastItem - 1));
 
             getBrandNameAndWheelsManufacturer(out string brandName, out string wheelsManufacturer);
 
             return VehicleFactory.CreateVehicle((VehicleFactory.eVehicleType)wantedVehicleType,
-             i_PlateNumber, brandName, wheelsManufacturer, getValidInputRange, getValidFloat);
+             i_PlateNumber, brandName, wheelsManufacturer, getInputRange, getValidFloat);
         }
 
         public static float getValidFloat()
@@ -193,7 +193,7 @@ namespace Ex03.ConsoleUI
             return floatNumber;
         }
 
-        public void insertVehicle()
+        public void insertNewVehicle()
         {
             Console.WriteLine("Please enter the plate number:");
             string plateNumberString = Console.ReadLine();
@@ -227,7 +227,7 @@ namespace Ex03.ConsoleUI
 3 - Paid vehicles only
 Please enter the number representing your choice."));
 
-            int filterOptions = getValidInputRange(0, (int)VehicleDescription.eVehicleStatus.LastItem);
+            int filterOptions = getInputRange(0, (int)VehicleDescription.eVehicleStatus.LastItem);
             if (filterOptions == 0)
             {
                 plateNumbers = r_Garage.GetPlateNumbers();
@@ -261,13 +261,13 @@ Please enter the number representing your choice."));
 2 - AlreadyRepaired
 3 - Paid
 Enter the number representing your choice."));
-            VehicleDescription.eVehicleStatus wantedNewStatus = (VehicleDescription.eVehicleStatus)getValidInputRange(1,
+            VehicleDescription.eVehicleStatus wantedNewStatus = (VehicleDescription.eVehicleStatus)getInputRange(1,
              (int)VehicleDescription.eVehicleStatus.LastItem);
             r_Garage.ChangeVehicleStatus(plateNumber, wantedNewStatus);
             Console.WriteLine("Status changed!"); 
         }
 
-        public void fillTiresToMax()
+        public void fillTiresMax()
         {
             string plateNumber = getValidPlateNumber();
             r_Garage.FillTiresToMax(plateNumber);
@@ -284,7 +284,7 @@ Enter the number representing your choice."));
 3 - Octan96
 4 - Octan98
 Enter the number representing your choice."));
-            FuelEnergy.eFuelType wantedFuelType = (FuelEnergy.eFuelType)getValidInputRange(1, (int)FuelEnergy.eFuelType.LastItem);
+            FuelEnergy.eFuelType wantedFuelType = (FuelEnergy.eFuelType)getInputRange(1, (int)FuelEnergy.eFuelType.LastItem);
             Console.WriteLine("How much fuel do you want to fill?");
             float amountToFill = getValidFloat();
 

@@ -93,7 +93,7 @@ Enter the number representing your choice."));
             o_CarDoorsNumber = (Car.eDoorsNumber)GetValidInputRange(1, (int)Car.eDoorsNumber.LastItem);
         }
 
-        private static void getTruckProperties(Func<float> GetValidFloat, out bool o_DoesContainDangerousMaterial, out float o_MaximumCarryingWeight)
+        private static void getTruckProperties(Func<float> GetValidFloat, out bool o_ContainsDangerousMaterial, out float o_MaximumCarryWeight)
         {
             string input = string.Empty;
 
@@ -106,15 +106,15 @@ Enter the number representing your choice."));
 
             if (input == "Y")
             {
-                o_DoesContainDangerousMaterial = true;
+                o_ContainsDangerousMaterial = true;
             }
             else
             {
-                o_DoesContainDangerousMaterial = false;
+                o_ContainsDangerousMaterial = false;
             }
 
             Console.WriteLine("Max carrying weight?");
-            o_MaximumCarryingWeight = GetValidFloat();
+            o_MaximumCarryWeight = GetValidFloat();
         }
 
         public static Vehicle CreateVehicle(eVehicleType i_VehicleType, string i_PlateNumber, string i_BrandName,
