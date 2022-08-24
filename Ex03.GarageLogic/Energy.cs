@@ -24,7 +24,7 @@ namespace Ex03.GarageLogic
         {
             if (m_CurrentEnergy + i_AmountToAdd > r_MaxEnergy)
             {
-                throw new ValueRangeException(0, r_MaxEnergy - m_CurrentEnergy);
+                throw new ValueOutOfRangeException(0, r_MaxEnergy - m_CurrentEnergy);
             }
 
             m_CurrentEnergy += i_AmountToAdd;

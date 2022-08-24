@@ -301,7 +301,7 @@ Enter the number representing your choice."));
             {
                 Console.WriteLine(argumentException.Message);
             }
-            catch (ValueRangeException valueOutOfRangeException)
+            catch (ValueOutOfRangeException valueOutOfRangeException)
             {
                 Console.WriteLine(string.Format("Maximum tank size is {0} litres",
                     valueOutOfRangeException.MaxValue));
@@ -323,7 +323,7 @@ Enter the number representing your choice."));
             {
                 Console.WriteLine(formatException.Message);
             }
-            catch (ValueRangeException valueOutOfRangeException)
+            catch (ValueOutOfRangeException valueOutOfRangeException)
             {
                 Console.WriteLine(string.Format("Maximum value is {0}", valueOutOfRangeException.MaxValue));
             }
